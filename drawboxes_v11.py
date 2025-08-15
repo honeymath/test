@@ -75,7 +75,8 @@ def build_forward_map(records):
             seen.add(key)
             forward_map.setdefault(str(rec['file_num']), {})[str(rec['line'])] = {
                 "x": rec['pdf_x'],
-                "y": rec['pdf_y']
+                "y": rec['pdf_y'],
+                "page": rec['pdf_page_index']+1
             }
     # 排序 key
     forward_map_sorted = {k: dict(sorted(v.items(), key=lambda kv: int(kv[0]))) for k, v in sorted(forward_map.items(), key=lambda kv: int(kv[0]))}
